@@ -2,16 +2,21 @@ package com.example.mockito.annotations.support
 
 
 import org.junit.Assert.assertEquals
-import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
-import org.mockito.MockitoAnnotations
+import org.mockito.junit.MockitoJUnit
+import org.mockito.junit.MockitoRule
 import java.time.LocalDate
 
 //@RunWith(MockitoJUnitRunner::class)
 class AnnotationTest {
+
+    @JvmField
+    @Rule
+    val mockitoRule: MockitoRule = MockitoJUnit.rule()
 
     @InjectMocks
     private lateinit var bookService: BookService
@@ -19,10 +24,10 @@ class AnnotationTest {
     @Mock
     private lateinit var bookRepository: BookRepository
 
-    @Before
-    fun beforeEach(){
-        MockitoAnnotations.openMocks(this)
-    }
+//    @Before
+//    fun beforeEach(){
+//        MockitoAnnotations.openMocks(this)
+//    }
 
     @Test
     fun demoCreateMocksUsingAnnotations(){
