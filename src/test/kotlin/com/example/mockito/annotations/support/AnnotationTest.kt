@@ -2,15 +2,15 @@ package com.example.mockito.annotations.support
 
 
 import org.junit.Assert.assertEquals
+import org.junit.Before
 import org.junit.Test
-import org.junit.runner.RunWith
 import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
-import org.mockito.junit.MockitoJUnitRunner
+import org.mockito.MockitoAnnotations
 import java.time.LocalDate
 
-@RunWith(MockitoJUnitRunner::class)
+//@RunWith(MockitoJUnitRunner::class)
 class AnnotationTest {
 
     @InjectMocks
@@ -18,6 +18,11 @@ class AnnotationTest {
 
     @Mock
     private lateinit var bookRepository: BookRepository
+
+    @Before
+    fun beforeEach(){
+        MockitoAnnotations.openMocks(this)
+    }
 
     @Test
     fun demoCreateMocksUsingAnnotations(){
