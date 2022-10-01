@@ -14,20 +14,24 @@ import java.time.LocalDate
 //@RunWith(MockitoJUnitRunner::class)
 class AnnotationTest {
 
+    //Can be used in place of line number 29 to 32
     @JvmField
     @Rule
     val mockitoRule: MockitoRule = MockitoJUnit.rule()
 
+    //Spy injection of any object/service which has to be spied
     @InjectMocks
     private lateinit var bookService: BookService
 
+    //Mocking the class which can't be used originally
     @Mock
     private lateinit var bookRepository: BookRepository
 
-//    @Before
-//    fun beforeEach(){
-//        MockitoAnnotations.openMocks(this)
-//    }
+    //Can be used in place of line number 14
+    /*@Before
+    fun beforeEach(){
+        MockitoAnnotations.openMocks(this)
+    }*/
 
     @Test
     fun demoCreateMocksUsingAnnotations(){
@@ -38,6 +42,10 @@ class AnnotationTest {
         val books = ArrayList<Book>()
         books.add(book1)
         books.add(book2)
+
+
+        /*when is used to tell the code that whenever findNewBooks is encountered, it should be searched in the mock
+        object instance of bookRepository and should return books collection*/
         `when`(bookRepository.findNewBooks(7)).thenReturn(books)
 
         val newListWithAppliedDiscount = bookService.getNewBookWithAppliedDiscount(10, 7)
